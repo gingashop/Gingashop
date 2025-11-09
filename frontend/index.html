@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-AO">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GingaShop - Moda Angolana</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>🛍️ Loja Angola</h1>
+            <div class="header-actions">
+                <button id="adminBtn">Admin</button>
+                <button id="cartBtn">🛒 <span id="cartCount">0</span></button>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Seção de Autenticação -->
+        <section id="authSection" class="auth-section">
+            <h2>Entrar com Celular</h2>
+            <form id="phoneForm">
+                <input type="tel" placeholder="+244 900 000 000" required>
+                <button type="submit">Receber Código</button>
+            </form>
+            
+            <form id="codeForm" class="hidden">
+                <input type="text" placeholder="Código de 4 dígitos" required>
+                <button type="submit">Verificar</button>
+            </form>
+        </section>
+
+        <!-- Catálogo de Produtos -->
+        <section id="productsSection" class="hidden">
+            <h2>Produtos Disponíveis</h2>
+            <div id="productsGrid" class="products-grid"></div>
+        </section>
+
+        <!-- Carrinho -->
+        <div id="cartModal" class="modal hidden">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Seu Carrinho</h3>
+                    <button id="closeCartBtn" class="close-btn">&times;</button>
+                </div>
+                <div id="cartItems"></div>
+                <div class="cart-total">
+                    Total: <span id="cartTotal">0</span> AOA
+                </div>
+                <button id="checkoutBtn">Finalizar Compra</button>
+            </div>
+        </div>
+    </main>
+
+    <!-- WhatsApp Fixed -->
+    <a href="https://wa.me/244935520796" class="whatsapp-float" target="_blank">
+        💬 WhatsApp GingaShop
+    </a>
+
+    <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="pt-AO">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - GingaShop</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .admin-section {
+            margin: 2rem 0;
+            padding: 2rem;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .admin-form {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .admin-form input, .admin-form select {
+            padding: 0.75rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+        
+        .admin-form input:focus, .admin-form select:focus {
+            outline: none;
+            border-color: #2d5bff;
+        }
+        
+        .orders-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        
+        .order-item {
+            padding: 1rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            background: #f8fafc;
+        }
+        
+        .order-item h4 {
+            color: #2d5bff;
+            margin-bottom: 0.5rem;
+        }
+        
+        .order-status {
+            display: inline-block;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin: 0.25rem 0;
+        }
+        
+        .status-pending { background: #fff3cd; color: #856404; }
+        .status-confirmed { background: #d1ecf1; color: #0c5460; }
+        .status-delivered { background: #d4edda; color: #155724; }
+        .status-cancelled { background: #f8d7da; color: #721c24; }
+        
+        .product-edit-form {
+            display: none;
+            margin-top: 1rem;
+            padding: 1rem;
+            background: #f8fafc;
+            border-radius: 8px;
+        }
+        
+        .product-edit-form.active {
+            display: block;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .stat-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        
+        .stat-card h3 {
+            color: #2d5bff;
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-card p {
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>🛍️ Painel Admin</h1>
+            <button onclick="window.location.href='/'">Voltar à Loja</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Estatísticas -->
+        <section class="admin-section">
+            <h2>📊 Estatísticas da Loja</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <h3 id="totalProducts">0</h3>
+                    <p>Produtos Ativos</p>
+                </div>
+                <div class="stat-card">
+                    <h3 id="totalOrders">0</h3>
+                    <p>Pedidos Totais</p>
+                </div>
+                <div class="stat-card">
+                    <h3 id="totalRevenue">0</h3>
+                    <p>Receita Total (AOA)</p>
+                </div>
+                <div class="stat-card">
+                    <h3 id="pendingOrders">0</h3>
+                    <p>Pedidos Pendentes</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Gestão de Produtos -->
+        <section class="admin-section">
+            <h2>➕ Adicionar Novo Produto</h2>
+            <form id="productForm" class="admin-form">
+                <input type="text" id="productName" placeholder="Nome do produto" required>
+                <input type="number" id="productPrice" placeholder="Preço (AOA)" required min="0" step="0.01">
+                <input type="number" id="productStock" placeholder="Stock" required min="0">
+                <input type="url" id="productImage" placeholder="URL da imagem">
+                <input type="text" id="productCategory" placeholder="Categoria">
+                <button type="submit">Adicionar Produto</button>
+            </form>
+        </section>
+
+        <!-- Lista de Produtos -->
+        <section class="admin-section">
+            <h2>📝 Produtos Cadastrados</h2>
+            <div id="adminProducts"></div>
+        </section>
+
+        <!-- Lista de Pedidos -->
+        <section class="admin-section">
+            <h2>📦 Pedidos Recentes</h2>
+            <div id="ordersList" class="orders-list"></div>
+        </section>
+    </main>
+
+    <script src="admin.js"></script>
+</body>
+</html>
